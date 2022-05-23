@@ -20,7 +20,7 @@ exports.Login = (req, res) => {
                 //req.session.loggedin = true;
                // req.session.username = username;
                  
-                res.send('/you are logged in');
+                res.send(error, results);
              } else {
                 res.send('Incorrect Username and/or Password!');
              }			
