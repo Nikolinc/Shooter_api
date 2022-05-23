@@ -5,29 +5,29 @@ const database = require('../settings/database');
 
 exports.Login = (req, res) => {
         
-    let username = request.body.username;
-    let password = request.body.password;
-    console.log(request);
+    let username = req.body.username;
+    let password = req.body.password;
+    console.log(req.body);
     console.log(password);
      if (username && password) {
          
-          database.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+          database.query('SELECT * FROM `user` WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
              
              if (error) throw error;
              
              if (results.length > 0) {
                 
-                 request.session.loggedin = true;
-                 request.session.username = username;
+                //req.session.loggedin = true;
+               // req.session.username = username;
                  
-                 response.send('/you are logged in');
+                res.send('/you are logged in');
              } else {
-                 response.send('Incorrect Username and/or Password!');
+                res.send('Incorrect Username and/or Password!');
              }			
-             response.end();
+             res.end();
          });
      } else {
-         response.send('Please enter Username and Password!');
-         response.end();
+        res.send('Please enter Username and Password!');
+        res.end();
      }
  };
